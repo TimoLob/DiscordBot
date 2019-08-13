@@ -40,4 +40,10 @@ client.on('message', message => {
 
 });
 
+client.on('error', (error) => {
+    console.error(new Date() + ': Discord client encountered an error');
+    console.error(error);
+});
+
+
 client.login(config.token);

@@ -3,7 +3,6 @@ module.exports = {
 	description: 'List all of my commands',
 	aliases: ['commands'],
 	usage: '!help',
-	cooldown: 5,
 	execute(message, args) {
         const { commands } = message.client;
         let reply = '';
