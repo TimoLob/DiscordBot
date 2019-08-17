@@ -1,8 +1,5 @@
 // https://discordjs.guide/command-handling/adding-features.html#a-dynamic-help-command
 
-
-// Test 
-
 const fs = require('fs');
 const config = require('./config.json');
 const prefix = config.prefix;
