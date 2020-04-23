@@ -13,7 +13,7 @@ module.exports = {
             y = args[1];
             mod = args[2];
             exp = y.toString(2);
-            message.channel.send(`x:${x};y:${y};mod:${mod};exp:${exp}`)
+            message.channel.send(`x:${x};y:${y};mod:${mod};exp:${exp}`);
 
             value = x;
             let msg = ""
