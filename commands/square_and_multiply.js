@@ -27,8 +27,7 @@ module.exports = {
                     msg+=` = ${value}\n`;
                 }
             }
-            message.channel.send(msg)
-            message.channel.send(value);
+            message.channel.send(msg+"\n"+`${x}^${y}=${value} mod ${mod}`)
 		}
 	},
 };
