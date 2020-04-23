@@ -12,6 +12,12 @@ module.exports = {
             x = parseInt(args[0]);
             y = parseInt(args[1]);
             mod = parseInt(args[2]);
+
+            if(x<0 || y<=0 || mod <=0) {
+                message.channel.send("Please don't try to break me. Use positive numbers.");
+                return;
+            }
+
             exp = "0b"+y.toString(2);
             message.channel.send(`x:${x} ; y:${y} ; mod:${mod} ; exp:${exp}`);
 
