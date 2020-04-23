@@ -21,14 +21,13 @@ module.exports = {
                 msg += `x^${exp.substring(2,i)}0=${value}*${value}`;
                 value = value *value % mod;
                 msg += `=${value}\n`;
-                message.channel.send(msg);
                 if(exp[i]=="1") {
                     msg += `x^${exp.substring(2,i+1)}=${value}*${x}`;
                     value = value * x % mod;
                     msg+=`=${value}\n`;
-                    message.channel.send(msg);
                 }
             }
+            message.channel.send(msg)
             message.channel.send(value);
 		}
 	},
