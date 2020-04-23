@@ -9,9 +9,9 @@ module.exports = {
 			message.channel.send(`Usage: square_mul x y m`);
 		}
 		else {
-            x = args[0];
-            y = args[1];
-            mod = args[2];
+            x = parseInt(args[0]);
+            y = parseInt(args[1]);
+            mod = parseInt(args[2]);
             exp = y.toString(2);
             message.channel.send(`x:${x};y:${y};mod:${mod};exp:${exp}`);
 
