@@ -12,13 +12,13 @@ module.exports = {
             x = parseInt(args[0]);
             y = parseInt(args[1]);
             mod = parseInt(args[2]);
-            exp = y.toString(2);
+            exp = "0b"+y.toString(2);
             message.channel.send(`x:${x};y:${y};mod:${mod};exp:${exp}`);
 
             value = x;
             let msg = ""
-            for(let i=0;i<exp.length;i++) {
-                msg = `x^${exp.substring(0,i)}0=${value}*${value}`;
+            for(let i=3;i<exp.length;i++) {
+                msg = `x^${exp.substring(2,i)}0=${value}*${value}`;
                 value = value *value % mod;
                 msg += `=${value}`;
                 message.channel.send(msg);
