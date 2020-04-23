@@ -18,14 +18,14 @@ module.exports = {
             value = x;
             let msg = ""
             for(let i=3;i<exp.length;i++) {
-                msg = `x^${exp.substring(2,i)}0=${value}*${value}`;
+                msg += `x^${exp.substring(2,i)}0=${value}*${value}`;
                 value = value *value % mod;
-                msg += `=${value}`;
+                msg += `=${value}\n`;
                 message.channel.send(msg);
                 if(exp[i]=="1") {
-                    msg = `x^${exp.substring(2,i+1)}=${value}*${x}`;
+                    msg += `x^${exp.substring(2,i+1)}=${value}*${x}`;
                     value = value * x % mod;
-                    msg+=`=${value}`;
+                    msg+=`=${value}\n`;
                     message.channel.send(msg);
                 }
             }
