@@ -21,7 +21,7 @@ module.exports = {
 			msg+=member.displayName+"\n";
 		});
 
-        if(args.length<3) {
+        if(args.length<2) {
             return message.channel.send('!randteams <t1> <t2> <t3> ...');
         }
 
