@@ -3,6 +3,7 @@ module.exports = {
 	description: 'Distribute the people in senders voice channel to multiple other channels',
 	aliases: ['commands'],
 	usage: '!randteams <t1> <t2> <t3> ...',
+	hidden: true,
 	execute(message, args) {
 		sender = message.member;
         if(!sender.roles.cache.has("610472977770872844")) {return message.reply('Only an admin can use this command.');}
