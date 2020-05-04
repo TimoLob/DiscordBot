@@ -27,9 +27,12 @@ module.exports = {
 
 		// Fetch voice channels
 		guildchannelmanager = sender.guild.channels;
+		console.log("ChannelManager:"+guildchannelmanager);
+		console.log("Type:"+guildchannelmanager.constructor.name);
 		voicechannels = [];
 		args.forEach(channelName => {
 			voicechannels.push(guildchannelmanager.resolve(channelName));
+			console.log(channelName);
 		})
 		console.log("Channels:"+voicechannels);
 
