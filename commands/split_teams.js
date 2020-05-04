@@ -16,14 +16,22 @@ module.exports = {
 		if(!srcChannel)
 			return message.channel.send("You must be in a voice channel to use this command.");
 		
+		if(args.length<2) {
+			return message.channel.send("Usage: "+usage);
+		}
+
 		members = srcChannel.members;
 		members.forEach(member => {
 			msg+=member.displayName+"\n";
 		});
 
-        if(args.length<2) {
-            return message.channel.send('!randteams <t1> <t2> <t3> ...');
-        }
+		// Fetch voice channels
+		guildchannelmanager = sender.guild.channels;
+		voicechannels = [];
+		args.forEach(channelName => {
+			voicechannels.push(guildchannelmanager.resolve(channelName));
+		})
+		console.log("Channels:"+voicechannels);
 
 		return message.channel.send(msg);
 	},
