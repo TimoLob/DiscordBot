@@ -8,10 +8,11 @@ module.exports = {
         if(!sender.roles.some(role => role.name === 'Admin')) {return message.reply('Only an admin can use this command.');}
 		msg = "";
 		voiceStateSender = sender.voice;
-		console.log("VoiceState"+voiceStateSender);
+		console.log("VoiceState:"+voiceStateSender);
 		console.log("Sender type:"+sender.constructor.name);
-		srcChannel = voiceStateSender.channel;
-		console.log(srcChannel);
+		srcChannel = message.member.voiceChannel;
+		console.log("VoiceChannel:",srcChannel);
+		console.log("Type: "+srcChannel.constructor.name);
 		if(!srcChannel)
 			return message.channel.send("You must be in a voice channel to use this command.");
 		
