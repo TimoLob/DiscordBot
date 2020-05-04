@@ -29,12 +29,9 @@ module.exports = {
 		voicechannels = [];
 		args.forEach(channelName => {
 			voicechannels.push(guildchannelmanager.resolve(channelName));
-			console.log(channelName);
 		})
-		console.log("Channels:"+voicechannels);
 
 		numTeams = voicechannels.length;
-		console.log(members);
 		teams = new Array(numTeams);
 		for(let i=0;i<numTeams;i++) {
 			teams[i] = [];
@@ -43,15 +40,16 @@ module.exports = {
 
 		members.forEach((value,key) => {
 			teams[teamIndex].push(value);
-			console.log(value.displayName+" in Team #"+teamIndex);
 			teamIndex = (teamIndex+1)%numTeams;
 		});
 		
 		for(let teamInd=0;teamInd<numTeams;teamInd++) {
+			msg+="Team #"+teamInd+"\n";
 			teams[teamInd].forEach(member => {
 				voiceState = member.voice;
 				console.log("Moving "+member.displayName+" to "+voicechannels[teamInd].id);
 				member.voice.setChannel(voicechannels[teamInd]);
+				msg+=member.displayName+"\n";
 			});
 		}
 		return message.channel.send(msg);
