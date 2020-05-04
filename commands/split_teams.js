@@ -10,7 +10,7 @@ module.exports = {
 		voiceStateSender = sender.voice;
 		console.log("VoiceState:"+voiceStateSender);
 		console.log("Sender type:"+sender.constructor.name);
-		srcChannel = message.member.voiceChannel;
+		srcChannel = voiceStateSender.channel;
 		console.log("VoiceChannel:",srcChannel);
 		console.log("Type: "+srcChannel.constructor.name);
 		if(!srcChannel)
