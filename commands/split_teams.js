@@ -8,11 +8,9 @@ module.exports = {
         if(!sender.roles.cache.has("610472977770872844")) {return message.reply('Only an admin can use this command.');}
 		msg = "";
 		voiceStateSender = sender.voice;
-		console.log("VoiceState:"+voiceStateSender);
-		console.log("Sender type:"+sender.constructor.name);
+
 		srcChannel = voiceStateSender.channel;
-		console.log("VoiceChannel:",srcChannel);
-		console.log("Type: "+srcChannel.constructor.name);
+
 		if(!srcChannel)
 			return message.channel.send("You must be in a voice channel to use this command.");
 		
@@ -27,8 +25,7 @@ module.exports = {
 
 		// Fetch voice channels
 		guildchannelmanager = sender.guild.channels;
-		console.log("ChannelManager:"+guildchannelmanager);
-		console.log("Type:"+guildchannelmanager.constructor.name);
+
 		voicechannels = [];
 		args.forEach(channelName => {
 			voicechannels.push(guildchannelmanager.resolve(channelName));
@@ -44,6 +41,7 @@ module.exports = {
 		let teamIndex = 0;
 		for(let i=0;i<members.length;i++) {
 			teams[teamIndex].push(members[i]);
+			console.log(members[i].displayName+" in Team #"+teamIndex);
 			teamIndex = (teamIndex+1)%numTeams;
 		}
 		console.log(teams);
