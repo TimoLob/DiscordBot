@@ -34,18 +34,26 @@ module.exports = {
 		console.log("Channels:"+voicechannels);
 
 		numTeams = voicechannels.length;
+		console.log(members);
 		teams = new Array(numTeams);
 		for(let i=0;i<numTeams;i++) {
 			teams[i] = [];
 		}
 		let teamIndex = 0;
-		for(let i=0;i<members.length;i++) {
-			teams[teamIndex].push(members[i]);
-			console.log(members[i].displayName+" in Team #"+teamIndex);
-			teamIndex = (teamIndex+1)%numTeams;
-		}
-		console.log(teams);
 
+		members.forEach((value,key) => {
+			teams[teamIndex].push(value);
+			console.log(value.displayName+" in Team #"+teamIndex);
+			teamIndex = (teamIndex+1)%numTeams;
+		});
+		
+		for(let teamInd=0;teamInd<numTeams;teamInd++) {
+			teams[teamInd].forEach(member => {
+				voiceState = member.voice;
+				console.log("Moving "+member.displayName+" to "+voicechannels[teamInd].id);
+				member.voice.setChannel(voicechannels[teamInd]);
+			});
+		}
 		return message.channel.send(msg);
 	},
 };
