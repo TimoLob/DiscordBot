@@ -4,7 +4,7 @@ module.exports = {
 	aliases: ['commands'],
 	usage: '!randteams <t1> <t2> <t3> ...',
 	execute(message, args) {
-        if(!member.roles.some(role => role.name === 'Admin')) {return message.reply('Only an admin can use this command.');}
+        if(!message.member.roles.some(role => role.name === 'Admin')) {return message.reply('Only an admin can use this command.');}
 		msg = "";
 		srcChannel = message.member.voice.channel;
 		if(!srcChannel)
