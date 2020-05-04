@@ -5,7 +5,7 @@ module.exports = {
 	usage: '!randteams <t1> <t2> <t3> ...',
 	execute(message, args) {
 		sender = message.member;
-        if(!sender.roles.some(role => role.name === 'Admin')) {return message.reply('Only an admin can use this command.');}
+        if(!member.roles.cache.has("610472977770872844")) {return message.reply('Only an admin can use this command.');}
 		msg = "";
 		voiceStateSender = sender.voice;
 		console.log("VoiceState:"+voiceStateSender);

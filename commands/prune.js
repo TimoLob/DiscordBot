@@ -5,7 +5,7 @@ module.exports = {
 	hidden: true,
 	execute(message, args) {
 		const member = message.member;
-		if(!member.roles.some(role => role.name === 'Admin')) {return message.reply('Only an admin can use this command.');}
+		if(!member.roles.cache.has("610472977770872844")) {return message.reply('Only an admin can use this command.');}
 
 		const amount = parseInt(args[0]) + 1;
 		if (isNaN(amount)) {
