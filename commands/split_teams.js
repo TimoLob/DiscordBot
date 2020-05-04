@@ -36,6 +36,18 @@ module.exports = {
 		})
 		console.log("Channels:"+voicechannels);
 
+		numTeams = voicechannels.length;
+		teams = new Array(numTeams);
+		for(let i=0;i<numTeams;i++) {
+			teams[i] = [];
+		}
+		let teamIndex = 0;
+		for(let i=0;i<members.length;i++) {
+			teams[teamIndex].push(members[i]);
+			teamIndex = (teamIndex+1)%numTeams;
+		}
+		console.log(teams);
+
 		return message.channel.send(msg);
 	},
 };
