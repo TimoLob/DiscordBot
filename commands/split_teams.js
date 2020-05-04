@@ -6,7 +6,7 @@ module.exports = {
 	hidden: true,
 	execute(message, args) {
 		sender = message.member;
-        if(!sender.roles.cache.has("610472977770872844")) {return message.reply('Only an admin can use this command.');}
+        if(!sender.roles.cache.has("610472977770872844") || !sender.roles.cache.has("457151265965735937")) {return message.reply('Only an admin can use this command.');}
 		msg = "";
 		voiceStateSender = sender.voice;
 
