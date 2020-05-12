@@ -22,16 +22,19 @@ module.exports = {
             message.channel.send(`x:${x} ; y:${y} ; mod:${mod} ; exp:${exp}`);
 
             value = x;
-            let msg = ""
+            let msg = `${x}^${y} mod ${mod}\n-------------------\n`
+            msg += `1 | ${x}\n`
             for(let i=3;i<exp.length;i++) {
-                msg += `x^${exp.substring(2,i)}0 = ${value}\\*${value}`;
+                msg += `${exp.substring(i,i+1)} | ${value}\\*${value}`;
                 value = value *value % mod;
-                msg += ` = ${value}\n`;
+
                 if(exp[i]=="1") {
-                    msg += `x^${exp.substring(2,i+1)} = ${value}\\*${x}`;
+                    msg += `\\*${x}`;
                     value = value * x % mod;
-                    msg+=` = ${value}\n`;
+                    msg += ` = ${value} \tsq+mul\n`;
                 }
+                else
+                    msg += ` = ${value} \t\tsq\n`;
             }
             message.channel.send(msg+"\n"+`${x}^${y}=${value} mod ${mod}`)
 		}
