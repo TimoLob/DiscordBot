@@ -103,12 +103,12 @@ class ECC {
 module.exports = {
 	name: 'double_add',
 	description: 'Calculates x^y mod m',
-	usage: '!double_add a b p x y d\nBerechnet d*(x,y) auf E: y^2=x^3+ax+b',
+	usage: '!double_add a b p x y d\nBerechnet d*(x,y) auf E: y^2=x^3+ax+b mod p',
 	hidden: false,
 	execute(message, args) {
 		if (args.length!=6) {
 			// Or msg.reply() to @ the user
-			message.channel.send(usage);
+			message.channel.send("!double_add a b p x y d\nBerechnet d*(x,y) auf E: y^2=x^3+ax+b mod p");
 		}
 		else {
             let response = "";
