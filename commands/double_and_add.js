@@ -108,7 +108,7 @@ module.exports = {
 	execute(message, args) {
 		if (args.length!=6) {
 			// Or msg.reply() to @ the user
-			message.channel.send("!double_add a b p x y d\nBerechnet d*(x,y) auf E: y^2=x^3+ax+b mod p");
+			message.channel.send("Usage: !double_add a b p x y d\nBerechnet d*(x,y) auf E: y^2=x^3+ax+b mod p");
 		}
 		else {
             let response = "";
