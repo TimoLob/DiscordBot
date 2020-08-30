@@ -1,3 +1,4 @@
+const utils = require("./utils/utils.js");
 module.exports = {
 	name: 'randteams',
 	description: 'Distribute the people in senders voice channel to multiple other channels',
@@ -6,7 +7,9 @@ module.exports = {
 	hidden: true,
 	execute(message, args) {
 		sender = message.member;
-        if(!sender.roles.cache.has("610472977770872844") || !sender.roles.cache.has("457151265965735937")) {return message.reply('Only an admin can use this command.');}
+        if(!utils.isAdmin(sender)) {
+			return message.reply('Only an admin can use this command.');
+		}
 		msg = "";
 		voiceStateSender = sender.voice;
 
@@ -18,12 +21,15 @@ module.exports = {
 		if(args.length<2) {
 			return message.channel.send("Usage: "+usage);
 		}
-
-		members = srcChannel.members;
+		
+		members = srcChannel.members; // Collection
+		let memberArray = [];
+		msg+="Detected people:\n";
 		members.forEach(member => {
 			msg+=member.displayName+"\n";
+			memberArray.push(member);
 		});
-
+		msg+="----------\n";
 		// Fetch voice channels
 		guildchannelmanager = sender.guild.channels;
 
@@ -31,15 +37,15 @@ module.exports = {
 		args.forEach(channelName => {
 			voicechannels.push(guildchannelmanager.resolve(channelName));
 		})
-
+		// Initialize empty Teams
 		numTeams = voicechannels.length;
 		teams = new Array(numTeams);
 		for(let i=0;i<numTeams;i++) {
 			teams[i] = [];
 		}
 		let teamIndex = 0;
-
-		members.forEach((value,key) => {
+		memberArray = utils.shuffle(memberArray);
+		memberArray.forEach(value => {
 			teams[teamIndex].push(value);
 			teamIndex = (teamIndex+1)%numTeams;
 		});
