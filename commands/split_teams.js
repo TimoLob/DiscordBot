@@ -1,9 +1,9 @@
 const utils = require("./utils/utils.js");
 module.exports = {
-	name: 'randteams',
+	name: 'splitteams',
 	description: 'Distribute the people in senders voice channel to multiple other channels',
 	aliases: ['commands'],
-	usage: '!randteams <t1> <t2> <t3> ...',
+	usage: '!splitteams <t1> <t2> <t3> ...',
 	hidden: true,
 	execute(message, args) {
 		sender = message.member;
@@ -21,7 +21,7 @@ module.exports = {
 		if(args.length<2) {
 			return message.channel.send("Usage: "+usage);
 		}
-		
+
 		members = srcChannel.members; // Collection
 		let memberArray = [];
 		msg+="Detected people:\n";
