@@ -21,8 +21,6 @@ module.exports = {
             members = srcChannel.members; // Collection
             
             members.forEach(member => {
-                console.log("-------------")
-                console.log(member);
                 memberArray.push(member.nickname ? member.nickname : member.user.username);
             });
             numTeams = parseInt(args[0]);
