@@ -4,7 +4,9 @@ const fs = require("fs");
 
 
 
-const {GenshinTask} = require("./getCodes");
+const {
+    GenshinTask
+} = require("./getCodes");
 // Genshin Impact primo gem codes download task
 const genshinTask = new GenshinTask(86400);
 
@@ -12,12 +14,12 @@ const genshinTask = new GenshinTask(86400);
 
 
 let nameToTask = new Map([
-    ["genshinimpact",genshinTask]
+    ["genshinimpact", genshinTask]
 ]);
 
 async function store() {
     let data = {};
-    nameToTask.forEach((task,key) => {
+    nameToTask.forEach((task, key) => {
         console.log(key);
         data[key] = [];
         task.registeredChannels.forEach(channel => {
@@ -25,16 +27,27 @@ async function store() {
         })
     });
     let data_string = JSON.stringify(data);
-    fs.writeFile("./data/tasks.json",data_string,"utf8",(err) => {
-        if(err) {
+    fs.writeFile("./data/tasks.json", data_string, "utf8", (err) => {
+        if (err) {
             console.log(err);
         }
     });
 }
 
 async function load(client) {
+    if (!fs.existsSync("./data")) {
+        fs.mkdir("./data/", (err) => {
+            if (err) {
+                console.log(err);
+            }
+        });
+        return;
+    }
+    if (!fs.existsSync("./data/tasks.json")) {
+        return;
+    }
     const channelManager = client.channels;
-    let data_string = fs.readFileSync("./data/tasks.json","utf8");
+    let data_string = fs.readFileSync("./data/tasks.json", "utf8");
     let data = JSON.parse(data_string);
 
     Object.keys(data).forEach(key => {
@@ -44,7 +57,7 @@ async function load(client) {
                 task.register(channel);
             });
 
-            
+
         })
     })
 }
