@@ -73,26 +73,6 @@ class TableRow {
 
 }
 
-async function getCodesTable() {
-    const table = new Table();
-
-    const response = await axios.get('https://www.gensh.in/events/promotion-codes/')
-
-
-    const html = response.data;
-    const $ = cheerio.load(html);
-    $("table tbody tr").each((index, el) => {
-        let tr = new TableRow();
-        $(el).find("td").each((colidx, colel) => {
-
-            tr.addCol($(colel).text())
-        })
-        table.addRow(tr);
-    });
-
-    return table;
-
-}
 
 class GenshinTask extends Task {
 
@@ -100,13 +80,14 @@ class GenshinTask extends Task {
         super(interval);
         
         this.codes = new Set();
+        this.update();
     }
 
 
     on_register(channel) {
         let message = "All currently redeemable codes:\n";
         this.codes.forEach(code => {
-            const row = table.getRowFromCode(code);
+            const row = this.table.getRowFromCode(code);
             message += row.reward + " - " + code + "\n";
         });
         channel.send(message);
@@ -115,7 +96,7 @@ class GenshinTask extends Task {
     update() {
         let hasNewCode = false;
         let newCodes = [];
-        getCodesTable().then(table => {
+        this.getCodesTable().then(table => {
             let currentCodes = new Set(table.getEUCodes());
             for (let code of currentCodes) {
                 if (!this.codes.has(code)) {
@@ -142,5 +123,29 @@ class GenshinTask extends Task {
             }
         })
     }
+
+
+
+    async getCodesTable() {
+        this.table = new Table();
+    
+        const response = await axios.get('https://www.gensh.in/events/promotion-codes/')
+    
+    
+        const html = response.data;
+        const $ = cheerio.load(html);
+        $("table tbody tr").each((index, el) => {
+            let tr = new TableRow();
+            $(el).find("td").each((colidx, colel) => {
+    
+                tr.addCol($(colel).text())
+            })
+            this.table.addRow(tr);
+        });
+    
+        return this.table;
+    
+    }
+
 }
 module.exports = {GenshinTask}

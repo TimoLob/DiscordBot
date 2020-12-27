@@ -4,6 +4,7 @@ const fs = require('fs');
 const config = require('./config.json');
 const prefix = config.prefix;
 const Discord = require('discord.js');
+const Tasks = require("./tasks/tasks")
 const client = new Discord.Client();
 
 client.commands = new Discord.Collection();
@@ -16,6 +17,8 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
+	Tasks.load(client);
+
 });
 
 client.on('message', message => {

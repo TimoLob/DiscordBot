@@ -1,9 +1,6 @@
 const Tasks = require("../tasks/tasks");
 const utils = require("./utils/utils.js");
 
-let nameToTask = new Map([
-    ["genshinimpact",Tasks.genshinTask]
-]);
 
 module.exports = {
 	name: 'register',
@@ -18,7 +15,7 @@ module.exports = {
 
         if(args.length==0) {
             let msg = "All available tasks:\n";
-            nameToTask.forEach((val,key) => {
+            Tasks.nameToTask.forEach((val,key) => {
                 msg+=key+"\n";
             });
             message.channel.send(msg);
@@ -30,7 +27,7 @@ module.exports = {
         }
         let name = args[0];
         
-        let task = nameToTask.get(name);
+        let task = Tasks.nameToTask.get(name);
         if(args[1]=="on") {
             task.register(message.channel);
         }
@@ -40,6 +37,7 @@ module.exports = {
         else {
             message.channel.send("Arg 2 needs to be exactly 'on' or 'off'")
         }
-        
-	},
+        Tasks.store();
+    }
+    
 };
