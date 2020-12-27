@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test",
-    "primos" : "node ./tasks/getCodes.js"
+    "test": "test"
   },
   "keywords": [
     "discord"
