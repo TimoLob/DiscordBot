@@ -44,12 +44,14 @@ class TableRow {
         this.eu = "";
         this.na = "";
         this.sea = "";
-        this.index = 0;
+        this.index = -1;
     }
 
     addCol(data) {
         data = data.trim();
         switch (this.index) {
+            case -1:
+                break;
             case 0:
                 this.reward = data
                 break;
