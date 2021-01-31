@@ -1,3 +1,5 @@
+const utils = require("./utils/utils.js");
+
 module.exports = {
 	name: 'prune',
 	description: 'delete last x messages in current channel',
@@ -5,7 +7,9 @@ module.exports = {
 	hidden: true,
 	execute(message, args) {
 		const member = message.member;
-		if(!member.roles.cache.has("610472977770872844")) {return message.reply('Only an admin can use this command.');}
+		if(!utils.isAdmin(member)) {
+			return message.reply('Only an admin can use this command.');
+		}
 
 		const amount = parseInt(args[0]) + 1;
 		if (isNaN(amount)) {
