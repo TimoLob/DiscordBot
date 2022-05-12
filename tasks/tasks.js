@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const {SampleTask} = require("./sampleTask");
 
-const sampleTask = new SampleTask(1,true); // does nothing every hour
+const sampleTask = new SampleTask(3600,false); // does nothing every hour
 
 
 let nameToTask = new Map([

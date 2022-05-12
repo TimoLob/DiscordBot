@@ -14,7 +14,7 @@ class SampleTask extends Task {
         }
     }
     on_register(channel) {
-        
+        this.update();
     }
 }
 
