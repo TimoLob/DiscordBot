@@ -1,7 +1,7 @@
 const {Task} = require("./task");
 
 class SampleTask extends Task {
-    constructor(interval,verbose = false) {
+    constructor(interval,verbose) {
         super(interval);
         this.verbose = verbose;
     }
@@ -12,6 +12,9 @@ class SampleTask extends Task {
             console.log("Sample Task Message");
             this.sendMessage("Sample Message");
         }
+    }
+    on_register(channel) {
+        
     }
 }
 
