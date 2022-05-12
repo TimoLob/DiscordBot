@@ -4,17 +4,8 @@ const fs = require("fs");
 
 
 
-const {
-    GenshinTask
-} = require("./getCodes");
-// Genshin Impact primo gem codes download task
-const genshinTask = new GenshinTask(18000);
-
-
-
-
 let nameToTask = new Map([
-    ["genshinimpact", genshinTask]
+    ["sampleName", null]
 ]);
 
 async function store() {
@@ -66,5 +57,4 @@ module.exports = {
     nameToTask,
     store,
     load,
-    genshinTask
 }
