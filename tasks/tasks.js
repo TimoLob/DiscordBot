@@ -1,11 +1,13 @@
 const Discord = require('discord.js');
 const fs = require("fs");
 
+const {SampleTask} = require("./sampleTask");
 
+const sampleTask = new SampleTask(60); // does nothing every hour
 
 
 let nameToTask = new Map([
-    ["sampleName", null]
+    ["sampleTask", sampleTask]
 ]);
 
 async function store() {

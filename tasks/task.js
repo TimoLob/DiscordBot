@@ -1,4 +1,12 @@
 class Task {
+    /*
+        Creates a task that is called every x seconds
+        1. Create a subclass of this class
+        2. Overwrite the update method
+        3. require it in tasks.js
+        4. Create a new instance of your class
+        5. add it to the nameToTask map
+    */
     constructor(interval) {
         this.registeredChannels = new Set();
         this.taskID = setInterval(
